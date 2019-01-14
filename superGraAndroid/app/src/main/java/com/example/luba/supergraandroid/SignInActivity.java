@@ -1,6 +1,7 @@
 package com.example.luba.supergraandroid;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -37,6 +38,14 @@ public class SignInActivity extends AppCompatActivity {
             return true;
         }
     }
+
+    public void sendMessage(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, ZasadyActivity.class);
+        startActivity(intent);
+
+    }
+
 
     @SuppressLint("SetTextI18n")
     public void connect(View view){

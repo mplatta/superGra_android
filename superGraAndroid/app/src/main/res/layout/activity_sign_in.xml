@@ -41,12 +41,13 @@
 
             <Button
                 android:id="@+id/button_zasady"
-                android:background="@drawable/button_styl"
-                android:layout_margin="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_styl"
+                android:onClick="sendMessage"
                 android:text="Poznaj zasady"
-                android:textColor="#fff"/>
+                android:textColor="#fff" />
 
         </LinearLayout>
 
@@ -74,15 +75,34 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content" />
 
-        <Button
-            android:id="@+id/button_connect"
-            android:background="@drawable/button_styl"
-            android:layout_marginTop="40dp"
-            android:layout_width="140dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Połącz się!"
-            android:onClick="connect"
-            android:textColor="#fff"/>
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/button_connect"
+                android:background="@drawable/button_styl"
+                android:layout_margin="10dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Połącz się!"
+                android:onClick="connect"
+                android:textColor="#fff"/>
+
+            <Button
+                android:id="@+id/button_qr"
+                android:background="@drawable/button_styl2"
+                android:layout_margin="10dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Skanuj QR"
+                android:onClick="connect"
+                android:textColor="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 
