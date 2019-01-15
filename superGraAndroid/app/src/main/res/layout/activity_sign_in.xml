@@ -1,31 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient"
+    android:orientation="vertical"
     tools:context=".SignInActivity">
 
-    <EditText
-        android:id="@+id/ip_address_edit_txt"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:autoText="true"
-        android:ems="10"
-        android:gravity="center_vertical|center"
-        android:hint="User name"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical"
+        android:padding="50dp"
+        android:background="@color/colorPrimaryDark">
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:textColor="#fff"
+            android:text="Witaj w Super Grze"/>
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="To najlepsza gra w jaką możesz zagrać. Serio jest super na maxa!"
+            android:textSize="15sp"
+            android:layout_marginTop="25dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp">
+
+            <Button
+                android:id="@+id/button_zasady"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_styl"
+                android:onClick="sendMessage"
+                android:text="Poznaj zasady"
+                android:textColor="#fff" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/ip_address_edit_txt"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/connect"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:hint="IP Serwera"
+            android:inputType="phone"
+            android:singleLine="true"/>
+        <TextView
+            android:id="@+id/validateConnection"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:drawablePadding="10dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp">
+
+            <Button
+                android:id="@+id/button_connect"
+                android:background="@drawable/button_styl"
+                android:layout_margin="10dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Połącz się!"
+                android:onClick="connect"
+                android:textColor="#fff"/>
+
+            <Button
+                android:id="@+id/button_qr"
+                android:background="@drawable/button_styl2"
+                android:layout_margin="10dp"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:text="Skanuj QR"
+                android:onClick="connect"
+                android:textColor="@color/colorPrimaryDark"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>
