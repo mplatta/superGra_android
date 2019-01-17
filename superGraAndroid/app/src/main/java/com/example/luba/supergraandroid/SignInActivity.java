@@ -9,11 +9,28 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+
 public class SignInActivity extends AppCompatActivity {
 
     private EditText ipInputEditText;
     private TextView connectText;
+    private static String ip_skan = "";
 
+    public static String getIp_skan() {
+        return ip_skan;
+    }
+
+    public static void setIp_skan(String ip_skan) {
+        SignInActivity.ip_skan = ip_skan;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ipInputEditText.setText(ip_skan);
+        SignInActivity.setIp_skan("");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +63,10 @@ public class SignInActivity extends AppCompatActivity {
 
     }
 
+    public void scanQR(View view){
+        Intent intent = new Intent(this, QRActivity.class);
+        startActivity(intent);
+    }
 
     @SuppressLint("SetTextI18n")
     public void connect(View view){
