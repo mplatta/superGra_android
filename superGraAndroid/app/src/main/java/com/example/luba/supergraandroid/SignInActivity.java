@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
+import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -54,11 +52,16 @@ public class SignInActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        macAddr = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+
         ipInputEditText = (EditText)findViewById(R.id.ip_address_edit_txt);
         connectText = (TextView)findViewById(R.id.validateConnection);
 
         connMgr = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        connectText.setText(macAddr);
+
     }
 
     private boolean validateIp() {
@@ -107,12 +110,6 @@ public class SignInActivity extends AppCompatActivity {
             connectText.setText("Zły adres IP..");
         }
 
-    }
-
-    public void getMAC(){
-        WifiManager wifiMan = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wifiInf = wifiMan.getConnectionInfo();
-        this.macAddr = wifiInf.getMacAddress().toString();
     }
 
 }
