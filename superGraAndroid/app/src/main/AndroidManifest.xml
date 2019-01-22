@@ -18,5 +18,4 @@
         </activity>
         <activity android:name=".CreateCharacter"></activity>
     </application>
-
 </manifest>
