@@ -110,6 +110,9 @@ public class QRActivity extends AppCompatActivity {
                             adres = qrcodes.valueAt(0).displayValue;
                             adresIP.setText(qrcodes.valueAt(0).displayValue);
                             SignInActivity.setIp_skan(adres);
+                            if (!adres.equals("dupa")) {
+                                SignInActivity.setIpInput(adres);
+                            }
                             finish();
                         }
                     });
