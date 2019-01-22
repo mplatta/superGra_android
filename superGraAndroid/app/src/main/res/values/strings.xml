@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">superGraAndroid</string>
+    <string name="nick_name">Nick:</string>
+    <string name="description">Opis:</string>
+    <string name="character_class">Klasa:</string>
+    <string name="hint_nazwa">Wprowadz nazwe uzytkownika</string>
+    <string name="hint_name">Wprowadz nazwe uzytkownika</string>
+    <string name="hint_description">Dodaj opis</string>
+    <string name="hint_character_class">Wybierz klase</string>
+    <string name="stats">Staty</string>
+    <string name="StatName">Statystyka</string>
+    <string name="StatValue">Wartosc</string>
+    <string name="Create">Stworz</string>
 </resources>

@@ -100,6 +100,8 @@ public class SignInActivity extends AppCompatActivity {
             if (networkInfo != null && networkInfo.isConnected()){
                 new ConnectionModule().execute(ip_url_addr);
                 Log.i("staram się połączyć", "ok");
+                Intent intent = new Intent(this, CreateCharacter.class);
+                startActivity(intent);
             }
 
         }
