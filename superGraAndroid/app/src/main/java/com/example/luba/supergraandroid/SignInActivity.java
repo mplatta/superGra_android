@@ -24,7 +24,7 @@ public class SignInActivity extends AppCompatActivity {
     private static TextView connectText;
     private static String ipInput = "";
     private static String ip_skan = "";
-    private static String ip_url = "http://";
+    private static String ipUrl = "http://";
     private static String ipPort = ":34450/api/test";
     private static String macAddr = "";
     private ConnectivityManager connMgr;
@@ -92,13 +92,13 @@ public class SignInActivity extends AppCompatActivity {
     public void connect(View view){
         if(validateIp()){
             connectText.setText("Staram sie połączyć!");
-            ip_url += ipInput + ipPort;
+            String ip_url_addr = ipUrl + ipInput + ipPort;
             //String ip_url_michu = "http://192.168.0.5:34450/api/test";
 
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
             if (networkInfo != null && networkInfo.isConnected()){
-                new ConnectionModule().execute(ip_url);
+                new ConnectionModule().execute(ip_url_addr);
                 Log.i("staram się połączyć", "ok");
             }
 
