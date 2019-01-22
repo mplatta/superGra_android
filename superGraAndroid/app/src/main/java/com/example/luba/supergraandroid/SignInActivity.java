@@ -14,7 +14,7 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.SignInActivity);
+        setContentView(R.layout.activity_sign_in);
         startActivity(new Intent(SignInActivity.this, CreateCharacter.class));
         ipInputEditText = (EditText)findViewById(R.id.ip_address_edit_txt);
     }
