@@ -3,6 +3,7 @@ package com.example.luba.supergraandroid;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,9 +39,12 @@ public class FragmentKarty extends Fragment {
         super.onCreate(savedInstanceState);
 
         lstPokemon = new ArrayList<>();
-        lstPokemon.add(new Pokemon("Jigglypuff", "Słodki i miły, jednak jeśli go zdenerwujesz...", R.drawable.jigglypuff));
-        lstPokemon.add(new Pokemon("Diglett", "Nazywany \"krecim Pokemonem\", choć z wyglądu przypomina dżdżownicę", R.drawable.diglett));
-        lstPokemon.add(new Pokemon("Magikarp", "Zwykła śnięta ryba. Nie stanowi zagrożenia", R.drawable.magikarp));
+        lstPokemon.add(new Pokemon("Jigglypuff", "Słodki i miły, jednak jeśli go zdenerwujesz...", R.drawable.jigglypuff254));
+        lstPokemon.add(new Pokemon("Diglett", "Nazywany \"krecim Pokemonem\", choć z wyglądu przypomina dżdżownicę", R.drawable.diglett254));
+        lstPokemon.add(new Pokemon("Magikarp", "Zwykła śnięta ryba. Nie stanowi zagrożenia", R.drawable.magikarp254));
+        lstPokemon.add(new Pokemon("Snorlax", "Śpią przez większość swojego życia. Budzą się jedynie po to, by zaspokoić głód", R.drawable.snorlax));
+        lstPokemon.add(new Pokemon("Bulbazaur", "Na jego grzbiecie znajduje się charakterystyczna, sporych rozmiarów bulwa", R.drawable.bulbazaur));
+        lstPokemon.add(new Pokemon("Miau", "Uwielbia błyszczące przedmioty. Nocami samotnie wędruje szukając takowych", R.drawable.meow));
 
     }
 
