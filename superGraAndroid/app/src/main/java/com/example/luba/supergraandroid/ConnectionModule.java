@@ -89,7 +89,7 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
             JSONObject resultJSON = new JSONObject(result);
             Boolean s = resultJSON.getBoolean("Status");
             //String status = resultJSON.getString("Status");
-            Log.d("--------RESUT JSON", s.toString());
+            Log.d("--------RESULT JSON", s.toString());
             if (s){
                 SignInActivity.setconnectText("True");
             }

@@ -93,13 +93,15 @@ public class SignInActivity extends AppCompatActivity {
         if(validateIp()){
             connectText.setText("Staram sie połączyć!");
             String ip_url_addr = ipUrl + ipInput + ipPort;
-            //String ip_url_michu = "http://192.168.0.5:34450/api/test";
 
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
 
             if (networkInfo != null && networkInfo.isConnected()){
                 new ConnectionModule().execute(ip_url_addr);
                 Log.i("staram się połączyć", "ok");
+
+                Intent intent = new Intent(this, ListaKart.class);
+                startActivity(intent);
             }
 
         }

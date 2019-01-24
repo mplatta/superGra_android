@@ -65,7 +65,8 @@
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:hint="IP Serwera"
-            android:inputType="phone"
+            android:inputType="number"
+            android:digits="0123456789."
             android:singleLine="true"/>
         <TextView
             android:id="@+id/validateConnection"
