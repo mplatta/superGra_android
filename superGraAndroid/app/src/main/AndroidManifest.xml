@@ -32,7 +32,7 @@
         </activity>
         <activity android:name=".ZasadyActivity" />
         <activity android:name=".QRActivity" />
-        <activity android:name=".ListaKart"></activity>
+        <activity android:name=".ListaKart" />
     </application>
 
 </manifest>
