@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -28,6 +29,8 @@ public class FragmentKarty extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_karty, container, false);
         myrecycleview = (RecyclerView) v.findViewById(R.id.rv_KartyRecycleView);
+        myrecycleview.addItemDecoration(new DividerItemDecoration(getContext(),
+                DividerItemDecoration.VERTICAL));
         RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getContext(), lstPokemon);
         myrecycleview.setLayoutManager(new LinearLayoutManager(getActivity()));
         myrecycleview.setAdapter(recyclerViewAdapter);

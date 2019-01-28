@@ -1,5 +1,6 @@
 package com.example.luba.supergraandroid;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
@@ -25,6 +26,13 @@ public class ListaKart extends AppCompatActivity {
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createPokemon(view);
+            }
+        });
+
         viewPager = (ViewPager) findViewById(R.id.vpViewPager);
         adapter = new ViewPageAdapter(getSupportFragmentManager());
 
@@ -33,5 +41,10 @@ public class ListaKart extends AppCompatActivity {
 
         viewPager.setAdapter(adapter);
 
+    }
+
+    public void createPokemon(View view){
+        Intent intent = new Intent(this, DodajKarte.class);
+        startActivity(intent);
     }
 }

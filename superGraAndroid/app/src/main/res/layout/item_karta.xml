@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@drawable/text_click_light"
-            android:layout_marginTop="@dimen/activity_small_margin"
+            android:layout_marginTop="5dp"
             android:maxLength="80"
             android:text="Krotki opis na milion znakow xxxxxxxxxxxxxxxxxxxxxxxxxxx" />
 
