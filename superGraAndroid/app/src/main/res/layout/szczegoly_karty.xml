@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="350dp"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="center">
 
     <LinearLayout
@@ -161,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:background="@drawable/button_styl"
+                android:onClick="wybierz"
                 android:text="Wybieram!"
                 android:textColor="@color/colorWhite" />
 

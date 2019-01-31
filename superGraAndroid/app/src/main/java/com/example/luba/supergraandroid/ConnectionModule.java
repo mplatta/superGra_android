@@ -7,6 +7,7 @@ import android.widget.TextView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -20,82 +21,61 @@ import java.net.URL;
 public class ConnectionModule extends AsyncTask<String, Void, String> {
 
     @Override
-    protected String doInBackground(String... strings) {
+    protected String doInBackground(String... params) {
 
-        String url_adres = strings[0];
-        Log.i("adres",url_adres);
-        String responseString = "";
-        InputStream is = null;
-        HttpURLConnection conn = null;
+        String data = "";
 
+        HttpURLConnection httpURLConnection = null;
         try {
-            URL url = new URL(url_adres);
-            conn = (HttpURLConnection) url.openConnection();
 
-            conn.setReadTimeout(10000);
-            conn.setConnectTimeout(10000);
-            conn.setRequestMethod("GET");
+            httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestProperty("Content-type", "application/json; charset=utf-8");
 
-            conn.connect();
-            Log.i("superGraAndroid","Odczythgljbhkj,m");
+            httpURLConnection.setDoOutput(true);
 
-            int response = conn.getResponseCode();
+            DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
+            wr.writeBytes(params[1].toString());
+            wr.flush();
+            wr.close();
 
-            // Kod 200, czytamy dane
-            if (response == 200){
+            InputStream in = httpURLConnection.getInputStream();
+            InputStreamReader inputStreamReader = new InputStreamReader(in);
 
-                int len = conn.getContentLength();
-                is = conn.getInputStream();
-
-                // Konwersja IS na String
-                Reader reader = new InputStreamReader(is, "UTF-8");
-                char[] buffer = new char[len];
-
-                // Rzeczywista liczba wczytanych znaków
-                int lenActual = reader.read(buffer);
-                responseString = new String(buffer).substring(0,lenActual);
-
-                Log.i("superGraAndroid","Odczytany JSON: " + responseString);
-
+            int inputStreamData = inputStreamReader.read();
+            while (inputStreamData != -1) {
+                char current = (char) inputStreamData;
+                inputStreamData = inputStreamReader.read();
+                data += current;
             }
-        } catch (MalformedURLException e) {
-            Log.i("connection", "cos poslzo zle");
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            Log.i("IO gowno", "cos poslzo zle");
-            e.printStackTrace();
-        }
-        finally{
-            // Zamykamy IS i Connection
-            if(is != null){
-                try {
-                    is.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(conn != null){
-                conn.disconnect();
+        } finally {
+            if (httpURLConnection != null) {
+                httpURLConnection.disconnect();
             }
         }
 
-        return responseString;
-
+        return data;
     }
 
     @Override
     protected void onPostExecute(String result) {
-        try {
-            JSONObject resultJSON = new JSONObject(result);
-            Boolean s = resultJSON.getBoolean("Status");
-            //String status = resultJSON.getString("Status");
-            Log.d("--------RESULT JSON", s.toString());
-            if (s){
-                SignInActivity.setconnectText("True");
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        super.onPostExecute(result);
+//        Log.i("cos", result);
+//        try {
+////            String test = "{'Action':1}";
+//            JSONObject resultJSON = new JSONObject(result);
+//            Integer s = resultJSON.getInt("Action");
+//            //String status = resultJSON.getString("Status");
+//            Log.d("aaaa", s.toString());
+//            if (s!=null){
+//                SignInActivity.setconnectText("True");
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//            Log.i("cos", e.getMessage());
+//        }
     }
 
 
