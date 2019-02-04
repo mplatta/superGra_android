@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorPrimaryDark"
     android:layout_gravity="center">
 
     <LinearLayout
+        android:id="@+id/gra_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="50dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/gra_pokemon_fota"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:padding="10dp"
+            android:src="@drawable/magikarp" />
+
         <TextView
-            android:id="@+id/pokemon_imie"
+            android:id="@+id/gra_pokemon_imie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
+            android:layout_marginTop="30dp"
             android:text="Nazwa Pokemona"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/colorWhite" />
 
         <TextView
-            android:id="@+id/pokemon_opis"
+            android:id="@+id/gra_pokemon_opis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -85,7 +95,7 @@
                     android:textColor="#fff" />
 
                 <TextView
-                    android:id="@+id/pokemon_szybkosc"
+                    android:id="@+id/gra_pokemon_szybkosc"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:gravity="left"
@@ -149,44 +159,6 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/pokemon_btn_wybierz"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_styl"
-                android:onClick="wybierz"
-                android:text="Wybieram!"
-                android:textColor="@color/colorWhite" />
-
-            <Button
-                android:id="@+id/pokemon_btn_edytuj"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_styl3"
-                android:text="Edytuj"
-                android:textColor="@color/colorWhite" />
-
-        </LinearLayout>
-
     </LinearLayout>
-
-    <ImageView
-        android:id="@+id/pokemon_fota"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:src="@drawable/magikarp" />
-
 
 </RelativeLayout>

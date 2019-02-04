@@ -1,5 +1,7 @@
 package com.example.luba.supergraandroid;
 
+import java.util.UUID;
+
 public class Pokemon {
 
     private String Nazwa;
@@ -39,4 +41,5 @@ public class Pokemon {
     public void setFoto(int foto) {
         Foto = foto;
     }
+
 }

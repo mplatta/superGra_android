@@ -33,7 +33,8 @@
         <activity android:name=".ZasadyActivity" />
         <activity android:name=".QRActivity" />
         <activity android:name=".ListaKart" />
-        <activity android:name=".DodajKarte"></activity>
+        <activity android:name=".DodajKarte" />
+        <activity android:name=".ActivityEkranGry"></activity>
     </application>
 
 </manifest>
