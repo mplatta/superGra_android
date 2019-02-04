@@ -41,7 +41,8 @@ public class FragmentKarty extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        lstPokemon = new ArrayList<>();
+        lstPokemon = new ArrayList<Pokemon>();
+        lstPokemon = PokemonyBaza.getInstance().getPokemons();
         lstPokemon.add(new Pokemon("Jigglypuff", "Słodki i miły, jednak jeśli go zdenerwujesz...", R.drawable.jigglypuff254));
         lstPokemon.add(new Pokemon("Diglett", "Nazywany \"krecim Pokemonem\", choć z wyglądu przypomina dżdżownicę", R.drawable.diglett254));
         lstPokemon.add(new Pokemon("Magikarp", "Zwykła śnięta ryba. Nie stanowi zagrożenia", R.drawable.magikarp254));
