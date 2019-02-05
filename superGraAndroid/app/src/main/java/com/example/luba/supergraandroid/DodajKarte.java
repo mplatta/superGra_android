@@ -21,6 +21,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.ExecutionException;
 
 
@@ -150,21 +153,41 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         String out = null;
+        boolean ok = false;
 
-        //musze sprawdzić co zwraca serwer bo nie pamietam
+        try {
+            out = new ConnectionModule()
+                .execute(Config.getApiCreateCharacter(), character.getJSON())
+                .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
-//        try {
-//            out = new ConnectionModule()
-//                .execute(Config.getApiCreateCharacter(), character.getJSON())
-//                .get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
+        JSONObject resultJSON = null;
+        try {
+            resultJSON = new JSONObject(out);
+            Boolean status = resultJSON.getBoolean("Status");
 
-//        Intent intent = new Intent(this, ActivityEkranGry.class);
-//        intent.putExtra("ChosenCharacter", character);
-//        startActivity(intent);
+            if (status) {
+                Integer char_id = resultJSON.getInt("Id");
+
+                if (char_id != null) {
+                    character.setCharacterId(char_id);
+
+                    ok = true;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        if (ok) {
+            Intent intent = new Intent(this, ActivityEkranGry.class);
+            intent.putExtra("ChosenCharacter", character);
+            startActivity(intent);
+        }
+
     }
 }
