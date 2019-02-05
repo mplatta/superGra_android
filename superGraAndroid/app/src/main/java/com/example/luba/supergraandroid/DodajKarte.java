@@ -1,6 +1,7 @@
 package com.example.luba.supergraandroid;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,13 +26,15 @@ public class DodajKarte extends AppCompatActivity {
 
 
     private SQLiteDatabase mDatabase;
-    private static EditText editNazwa;
-    private static EditText editOpis;
-    private static EditText editSila;
-    private static EditText editSzybkosc;
-    private static EditText editZywiol;
-    private static EditText editZycie;
+    private EditText editNazwa;
+    private EditText editOpis;
+    private EditText editSila;
+    private EditText editSzybkosc;
+    private EditText editZywiol;
+    private EditText editZycie;
     private Integer numberOfLines = 1;
+
+    private LinearLayout skill;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,8 @@ public class DodajKarte extends AppCompatActivity {
 
         editNazwa = (EditText) findViewById(R.id.add_nazwa);
         editOpis = (EditText) findViewById(R.id.add_opis);
+
+        skill = (LinearLayout) findViewById(R.id.add_linear_layout);
         //editSila = (EditText) findViewById(R.id.add_sila);
         //editSzybkosc = (EditText) findViewById(R.id.add_szybkosc);
         //editZywiol = (EditText) findViewById(R.id.add_zywiol);
@@ -65,12 +71,12 @@ public class DodajKarte extends AppCompatActivity {
 
     public void validateSave(View view){
 
-        Boolean eN = validateField(this.editNazwa);
-        Boolean eO = validateField(this.editOpis);
-        Boolean eS = validateField(this.editSila);
-        Boolean eSz = validateField(this.editSzybkosc);
-        Boolean eZ = validateField(this.editZywiol);
-        Boolean eZy = validateField(this.editZycie);
+        boolean eN = validateField(this.editNazwa);
+        boolean eO = validateField(this.editOpis);
+        boolean eS = validateField(this.editSila);
+        boolean eSz = validateField(this.editSzybkosc);
+        boolean eZ = validateField(this.editZywiol);
+        boolean eZy = validateField(this.editZycie);
 
         if(eN && eO && eS && eSz && eZ && eZy){
             Toast.makeText(getApplicationContext(),"Please ok",Toast.LENGTH_SHORT).show();
@@ -95,19 +101,17 @@ public class DodajKarte extends AppCompatActivity {
 
     public void addSkill(View view) {
 
-        LinearLayout skill = (LinearLayout) findViewById(R.id.add_linear_layout);
-
         LinearLayout ll = new LinearLayout(this);
         ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,1));
 
         ll.setOrientation(LinearLayout.HORIZONTAL);
-        TextView textView = new TextView(this);
-        textView.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+        EditText etPar = new EditText(this);
+        etPar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,1));
-        textView.setHint("Paramet");
-        textView.setId(numberOfLines);
-        ll.addView(textView);
+        etPar.setHint("Paramet");
+        etPar.setId(numberOfLines);
+        ll.addView(etPar);
         numberOfLines++;
 
         EditText et = new EditText(this);
@@ -115,7 +119,7 @@ public class DodajKarte extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,1));
         et.setSingleLine(true);
         et.setHint("Wartość");
-        et.setInputType(InputType.TYPE_CLASS_TEXT);
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
         et.setId(numberOfLines);
         ll.addView (et);
         numberOfLines++;
@@ -123,4 +127,31 @@ public class DodajKarte extends AppCompatActivity {
         skill.addView(ll);
     }
 
+    public void wybierz(View view) {
+        Character character = new Character();
+
+        character.setAndId("id"); // to id androida unikalne
+        character.setCharacterId(0); // nie zmieniaj, to jest potrzebne tylko dla serwera narazie
+        character.setName(editNazwa.getText().toString());
+        character.setType("klasa postaci"); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
+        character.setDescription(editOpis.getText().toString());
+
+        // zmień że wartośc skilla może być tylko liczbą :*
+        // i parametr czyli inaczej nazwa skilla ma być edittextem a nie texview
+
+        for (int i = 0; i < skill.getChildCount(); i++) {
+            LinearLayout layout = (LinearLayout)skill.getChildAt(i);
+
+            EditText skill_name = (EditText)layout.getChildAt(0);
+
+            if (!skill_name.getText().toString().isEmpty()) {
+                EditText skill_value = (EditText)layout.getChildAt(1);
+                character.getStats().add(new Stat(skill_name.getText().toString(), Integer.parseInt(skill_value.getText().toString())));
+            }
+        }
+
+        Intent intent = new Intent(this, ActivityEkranGry.class);
+        intent.putExtra("ChosenCharacter", character);
+        startActivity(intent);
+    }
 }

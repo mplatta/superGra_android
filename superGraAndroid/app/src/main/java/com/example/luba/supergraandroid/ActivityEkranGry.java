@@ -13,12 +13,14 @@ import java.util.concurrent.ExecutionException;
 public class ActivityEkranGry extends AppCompatActivity {
 
     private Handler handler;
+    private Character character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran_gry);
 
+        character = (Character)getIntent().getSerializableExtra("ChosenCharacter");
        // handler = new Handler();
 
        // handler.post(runnable);
