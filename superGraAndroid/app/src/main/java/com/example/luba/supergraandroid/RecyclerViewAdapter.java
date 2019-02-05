@@ -62,7 +62,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 buttonWybierz.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Character character = new Character();
+                        character.setAndId(Config.getAndroidId());
+                        character.setCharacterId(0); // nie zmieniaj, to jest potrzebne tylko dla serwera narazie
+                        character.setName(mData.get(viewHolder.getAdapterPosition()).getNazwa());
+                        character.setType("klasa postaci"); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
+                        character.setDescription(mData.get(viewHolder.getAdapterPosition()).getOpis());
                         Intent ekranGry = new Intent(mContext, ActivityEkranGry.class);
+                        ekranGry.putExtra("ChosenCharacter", character);
                         mContext.startActivity(ekranGry);
                     }
                 });

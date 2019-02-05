@@ -66,17 +66,19 @@ public class DodajKarte extends AppCompatActivity {
         }
     }
 
-    public void validateSave(View view){
+    public boolean validateSave(View view){
 
         boolean eN = validateField(this.editNazwa);
         boolean eO = validateField(this.editOpis);
 
         if(eN && eO){
             Toast.makeText(getApplicationContext(),"Please ok",Toast.LENGTH_SHORT).show();
-            addToDatabase();
+            //addToDatabase();
+            return true;
         }
         else {
             Toast.makeText(getApplicationContext(),"Please fill to gowno",Toast.LENGTH_SHORT).show();
+            return false;
         }
 
     }
@@ -99,6 +101,7 @@ public class DodajKarte extends AppCompatActivity {
         etPar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,1));
         etPar.setHint("Parametr");
+        etPar.setSingleLine(true);
         etPar.setId(numberOfLines);
         ll.addView(etPar);
         numberOfLines++;
@@ -110,13 +113,17 @@ public class DodajKarte extends AppCompatActivity {
         et.setHint("Wartość");
         et.setInputType(InputType.TYPE_CLASS_NUMBER);
         et.setId(numberOfLines);
-        ll.addView (et);
+        ll.addView(et);
         numberOfLines++;
 
         skill.addView(ll);
     }
 
     public void wybierz(View view) {
+
+        if (!validateSave(view)){
+            return;
+        }
         Character character = new Character();
 
         character.setAndId(Config.getAndroidId());

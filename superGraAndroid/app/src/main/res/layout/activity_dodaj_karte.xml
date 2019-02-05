@@ -74,8 +74,8 @@
                         android:layout_height="wrap_content"
                         android:gravity="left"
                         android:hint="Klasa"
-                        android:maxLength="1"
-                        android:inputType="numberDecimal"
+                        android:singleLine="true"
+                        android:inputType="text"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/colorWhite" />
                 </LinearLayout>

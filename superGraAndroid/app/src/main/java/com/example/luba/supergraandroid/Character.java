@@ -1,5 +1,7 @@
 package com.example.luba.supergraandroid;
 
+import android.widget.ImageView;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -107,4 +109,5 @@ public class Character implements Serializable {
         this.stats = new ArrayList<Stat>();
         this.equipment = new ArrayList<String>();
     }
+
 }
