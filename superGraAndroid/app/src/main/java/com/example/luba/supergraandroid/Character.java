@@ -68,6 +68,41 @@ public class Character implements Serializable {
         this.equipment = equipment;
     }
 
+    public String getJSON() {
+        String jsonString = "{";
+
+        jsonString += "\"Id\":\"" + this.id + "\",";
+        jsonString += "\"CharacterId\":" + this.characterId.toString() + ",";
+        jsonString += "\"Name\":\"" + this.name + "\",";
+        jsonString += "\"Description\":\"" + this.description + "\",";
+        jsonString += "\"Class\":\"" + this.type + "\",";
+
+        // STATS
+        jsonString += "\"Stats\":[";
+        for (int i = 0; i < stats.size(); i++) {
+            jsonString += "{";
+
+            jsonString += "\"Name\":\"" + stats.get(i).getName() + "\",";
+            jsonString += "\"Value\":" + stats.get(i).getValue().toString();
+
+            jsonString += (i + 1 < stats.size()) ? "}," : "}";
+        }
+        jsonString += "],";
+
+
+        // EQ
+        jsonString += "\"Equipment\":[";
+        for (int i = 0; i < equipment.size(); i++) {
+            jsonString += "\"" + equipment.get(i);
+            jsonString += (i + 1 < equipment.size()) ? "\"," : "\"";
+        }
+        jsonString += "]";
+
+        jsonString += "}";
+
+        return jsonString;
+    }
+
     public Character() {
         this.stats = new ArrayList<Stat>();
         this.equipment = new ArrayList<String>();

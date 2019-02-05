@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.vision.text.Line;
 
+import java.util.concurrent.ExecutionException;
+
 
 public class DodajKarte extends AppCompatActivity {
 
@@ -130,14 +132,11 @@ public class DodajKarte extends AppCompatActivity {
     public void wybierz(View view) {
         Character character = new Character();
 
-        character.setAndId("id"); // to id androida unikalne
+        character.setAndId(Config.getAndroidId());
         character.setCharacterId(0); // nie zmieniaj, to jest potrzebne tylko dla serwera narazie
         character.setName(editNazwa.getText().toString());
         character.setType("klasa postaci"); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
         character.setDescription(editOpis.getText().toString());
-
-        // zmień że wartośc skilla może być tylko liczbą :*
-        // i parametr czyli inaczej nazwa skilla ma być edittextem a nie texview
 
         for (int i = 0; i < skill.getChildCount(); i++) {
             LinearLayout layout = (LinearLayout)skill.getChildAt(i);
@@ -150,8 +149,22 @@ public class DodajKarte extends AppCompatActivity {
             }
         }
 
-        Intent intent = new Intent(this, ActivityEkranGry.class);
-        intent.putExtra("ChosenCharacter", character);
-        startActivity(intent);
+        String out = null;
+
+        //musze sprawdzić co zwraca serwer bo nie pamietam
+
+//        try {
+//            out = new ConnectionModule()
+//                .execute(Config.getApiCreateCharacter(), character.getJSON())
+//                .get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
+//        Intent intent = new Intent(this, ActivityEkranGry.class);
+//        intent.putExtra("ChosenCharacter", character);
+//        startActivity(intent);
     }
 }

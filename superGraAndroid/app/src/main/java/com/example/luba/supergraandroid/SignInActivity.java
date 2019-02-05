@@ -73,6 +73,8 @@ public class SignInActivity extends AppCompatActivity {
         androidId = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
+        Config.setAndroidId(androidId);
+
         ipInputEditText = (EditText)findViewById(R.id.ip_address_edit_txt);
         connectText = (TextView)findViewById(R.id.validateConnection);
 
@@ -113,6 +115,8 @@ public class SignInActivity extends AppCompatActivity {
             connectText.setText("Staram sie połączyć!");
 
             this.setIp_url_addr(ipUrl + ipInput + ipPort);
+
+            Config.setIp(ipInput);
 
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             String out = null;
