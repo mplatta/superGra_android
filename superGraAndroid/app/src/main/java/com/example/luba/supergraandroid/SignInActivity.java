@@ -73,6 +73,8 @@ public class SignInActivity extends AppCompatActivity {
         androidId = Settings.Secure.getString(getContentResolver(),
                 Settings.Secure.ANDROID_ID);
 
+        Config.setAndroidId(androidId);
+
         ipInputEditText = (EditText)findViewById(R.id.ip_address_edit_txt);
         connectText = (TextView)findViewById(R.id.validateConnection);
 
@@ -114,29 +116,34 @@ public class SignInActivity extends AppCompatActivity {
 
             this.setIp_url_addr(ipUrl + ipInput + ipPort);
 
+            Config.setIp(ipInput);
+
             NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
             String out = null;
             if (networkInfo != null && networkInfo.isConnected()){
 //                new ConnectionModule().execute(ip_url_addr);
 //                Log.i("staram się połączyć", "ok");
 //
+
+                JSONObject postData = new JSONObject();
+                try {
+                    postData.put("Id", androidId);
+                        Log.i("ZXC", postData.toString() );
+                        //TODO: tu w out masz stringa  jsonem, wyciągnij go jsonobject i dopiero te akcje, ale ic więcej nie potrzebujemy tutaj po prostu sprawdzamy czy jest sieć
+                    out = new ConnectionModule()
+                            .execute(ip_url_addr, postData.toString())
+                            .get();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
                 Intent intent = new Intent(this, ListaKart.class);
                 startActivity(intent);
-//                JSONObject postData = new JSONObject();
-//                try {
-//                    postData.put("Id", androidId);
-//                        Log.i("ZXC", postData.toString() );
-//                        //TODO: tu w out masz stringa  jsonem, wyciągnij go jsonobject i dopiero te akcje, ale ic więcej nie potrzebujemy tutaj po prostu sprawdzamy czy jest sieć
-//                    out = new ConnectionModule()
-//                            .execute(ip_url_addr, postData.toString())
-//                            .get();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                } catch (ExecutionException e) {
-//                    e.printStackTrace();
-//                }
+
             }
 
         }

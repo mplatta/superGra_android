@@ -13,12 +13,14 @@ import java.util.concurrent.ExecutionException;
 public class ActivityEkranGry extends AppCompatActivity {
 
     private Handler handler;
+    private Character character;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ekran_gry);
 
+        character = (Character)getIntent().getSerializableExtra("ChosenCharacter");
        // handler = new Handler();
 
        // handler.post(runnable);
@@ -36,7 +38,7 @@ public class ActivityEkranGry extends AppCompatActivity {
                 Log.i("ZXC", postData.toString() );
                 //TODO: tu w out masz stringa  jsonem, wyciągnij go jsonobject i dopiero te akcje, ale ic więcej nie potrzebujemy tutaj po prostu sprawdzamy czy jest sieć
                 out = new ConnectionModule()
-                            .execute(SignInActivity.getIp_url_addr(), postData.toString())
+                            .execute(Config.getApiGetQueue(), postData.toString())
                             .get();
                 Log.i("luba", out);
                 } catch (JSONException e) {
