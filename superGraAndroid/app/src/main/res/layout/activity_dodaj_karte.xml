@@ -11,214 +11,128 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
-    android:layout_height="wrap_content">
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/add_nazwa"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="90dp"
-            android:hint="Nazwa Postaci"
-            android:maxLength="25"
-            android:singleLine="true"
-            android:inputType="text"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/colorWhite" />
-
-        <EditText
-            android:id="@+id/add_opis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginBottom="10dp"
-            android:gravity="center"
-            android:maxLength="50"
-            android:inputType="text"
-            android:hint="Krótki opis pokemona na 50 znakow chyba max"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:textColor="@color/colorTextDark" />
-
-        <LinearLayout
-            android:id="@+id/add_linear_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:orientation="vertical"/>
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="right"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:drawableRight="@drawable/ic_sila"-->
-                    <!--android:textColor="#fff" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/add_sila"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="left"-->
-                    <!--android:hint="Siła"-->
-                    <!--android:inputType="numberDecimal"-->
-                    <!--android:maxLength="2"-->
-                    <!--android:textColor="@color/colorWhite" />-->
-
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="left"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:drawableRight="@drawable/ic_szybkosc"-->
-                    <!--android:textColor="#fff" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/add_szybkosc"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="left"-->
-                    <!--android:hint="Szybkość"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:inputType="numberDecimal"-->
-                    <!--android:maxLength="2"-->
-                    <!--android:textColor="@color/colorWhite" />-->
-
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<TextView-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="center"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:drawableRight="@drawable/ic_zywiol"-->
-                    <!--android:textColor="@color/colorWhite" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/add_zywiol"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:hint="Żywioł"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:inputType="text"-->
-                    <!--android:maxLength="20"-->
-                    <!--android:textColor="@color/colorWhite"-->
-                    <!--android:gravity="left"-->
-                    <!--android:spinnerMode="dropdown" />-->
-
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:layout_marginTop="5dp"-->
-                <!--android:orientation="horizontal">-->
-
-                <!--<TextView-->
-                    <!--android:drawableRight="@drawable/ic_serce"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="right"-->
-                    <!--android:textColor="#fff" />-->
-
-                <!--<EditText-->
-                    <!--android:id="@+id/add_zycie"-->
-                    <!--android:layout_width="150dp"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:gravity="left"-->
-                    <!--android:hint="Życie"-->
-                    <!--android:maxLength="1"-->
-                    <!--android:inputType="numberDecimal"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:textColor="@color/colorWhite" />-->
-
-            <!--</LinearLayout>-->
-
-        <!--</LinearLayout>-->
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/add_btn_wybierz"
-                android:layout_width="140dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_styl"
-                android:onClick="wybierz"
-                android:text="Graj!"
-                android:textColor="@color/colorWhite" />
+                android:layout_marginTop="50dp"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-            <Button
-                android:id="@+id/add_btn_dodaj_pole"
-                android:layout_width="140dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@drawable/button_styl3"
-                android:onClick="addSkill"
-                android:text="Dodaj Skill"
-                android:textColor="@color/colorWhite" />
+                <EditText
+                    android:id="@+id/add_nazwa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="90dp"
+                    android:hint="Nazwa Postaci"
+                    android:maxLength="25"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/colorWhite" />
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/add_opis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center"
+                    android:maxLength="50"
+                    android:inputType="text"
+                    android:hint="Krótki opis pokemona na 50 znakow chyba max"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/colorTextDark" />
 
-    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/add_fota"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:clickable="true"
-        app:backgroundTint="@android:color/transparent"
-        android:src="@drawable/nicolas" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:drawableRight="@drawable/wand"
+                        android:layout_width="150dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="right"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="#fff" />
+
+                    <EditText
+                        android:id="@+id/add_zycie"
+                        android:layout_width="150dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="left"
+                        android:hint="Klasa"
+                        android:maxLength="1"
+                        android:inputType="numberDecimal"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/colorWhite" />
+                </LinearLayout>
 
 
-</RelativeLayout>
-</ScrollView>
+                <LinearLayout
+                    android:id="@+id/add_linear_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:orientation="vertical"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/add_btn_wybierz"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_styl"
+                        android:onClick="wybierz"
+                        android:text="Graj!"
+                        android:textColor="@color/colorWhite" />
+
+                    <Button
+                        android:id="@+id/add_btn_dodaj_pole"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_styl3"
+                        android:onClick="addSkill"
+                        android:text="Dodaj Skill"
+                        android:textColor="@color/colorWhite" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/add_fota"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:clickable="true"
+                app:backgroundTint="@android:color/transparent"
+                android:src="@drawable/nicolas" />
+
+        </RelativeLayout>
+    </ScrollView>
 </LinearLayout>

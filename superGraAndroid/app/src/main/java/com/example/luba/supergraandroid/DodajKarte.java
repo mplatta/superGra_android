@@ -33,10 +33,6 @@ public class DodajKarte extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     private EditText editNazwa;
     private EditText editOpis;
-    private EditText editSila;
-    private EditText editSzybkosc;
-    private EditText editZywiol;
-    private EditText editZycie;
     private Integer numberOfLines = 1;
 
     private LinearLayout skill;
@@ -54,10 +50,6 @@ public class DodajKarte extends AppCompatActivity {
         editOpis = (EditText) findViewById(R.id.add_opis);
 
         skill = (LinearLayout) findViewById(R.id.add_linear_layout);
-        //editSila = (EditText) findViewById(R.id.add_sila);
-        //editSzybkosc = (EditText) findViewById(R.id.add_szybkosc);
-        //editZywiol = (EditText) findViewById(R.id.add_zywiol);
-        //editZycie = (EditText) findViewById(R.id.add_zycie);
 
     }
 
@@ -78,12 +70,8 @@ public class DodajKarte extends AppCompatActivity {
 
         boolean eN = validateField(this.editNazwa);
         boolean eO = validateField(this.editOpis);
-        boolean eS = validateField(this.editSila);
-        boolean eSz = validateField(this.editSzybkosc);
-        boolean eZ = validateField(this.editZywiol);
-        boolean eZy = validateField(this.editZycie);
 
-        if(eN && eO && eS && eSz && eZ && eZy){
+        if(eN && eO){
             Toast.makeText(getApplicationContext(),"Please ok",Toast.LENGTH_SHORT).show();
             addToDatabase();
         }
@@ -97,10 +85,6 @@ public class DodajKarte extends AppCompatActivity {
         ContentValues cv = new ContentValues();
         cv.put(BazaDanych.BazaDanychPokemon.COLUMN_NAZWA, editNazwa.getText().toString());
         cv.put(BazaDanych.BazaDanychPokemon.COLUMN_OPIS, editOpis.getText().toString());
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_SILA, Integer.parseInt(editSila.getText().toString()));
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_SZYBKOSC, Integer.parseInt(editSzybkosc.getText().toString()));
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_ZYCIE, Integer.parseInt(editZycie.getText().toString()));
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_ZYWIOL, editZywiol.getText().toString());
         mDatabase.insert(BazaDanych.BazaDanychPokemon.TABLE_NAME, null, cv);
     }
 
@@ -114,7 +98,7 @@ public class DodajKarte extends AppCompatActivity {
         EditText etPar = new EditText(this);
         etPar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT,1));
-        etPar.setHint("Paramet");
+        etPar.setHint("Parametr");
         etPar.setId(numberOfLines);
         ll.addView(etPar);
         numberOfLines++;
@@ -153,35 +137,36 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         String out = null;
-        boolean ok = false;
-
-        try {
-            out = new ConnectionModule()
-                .execute(Config.getApiCreateCharacter(), character.getJSON())
-                .get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-        JSONObject resultJSON = null;
-        try {
-            resultJSON = new JSONObject(out);
-            Boolean status = resultJSON.getBoolean("Status");
-
-            if (status) {
-                Integer char_id = resultJSON.getInt("Id");
-
-                if (char_id != null) {
-                    character.setCharacterId(char_id);
-
-                    ok = true;
-                }
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        boolean ok = true;
+//        boolean ok = false;
+//
+//        try {
+//            out = new ConnectionModule()
+//                .execute(Config.getApiCreateCharacter(), character.getJSON())
+//                .get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+//
+//        JSONObject resultJSON = null;
+//        try {
+//            resultJSON = new JSONObject(out);
+//            Boolean status = resultJSON.getBoolean("Status");
+//
+//            if (status) {
+//                Integer char_id = resultJSON.getInt("Id");
+//
+//                if (char_id != null) {
+//                    character.setCharacterId(char_id);
+//
+//                    ok = true;
+//                }
+//            }
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
         if (ok) {
             Intent intent = new Intent(this, ActivityEkranGry.class);

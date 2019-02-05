@@ -125,21 +125,21 @@ public class SignInActivity extends AppCompatActivity {
 //                Log.i("staram się połączyć", "ok");
 //
 
-                JSONObject postData = new JSONObject();
-                try {
-                    postData.put("Id", androidId);
-                        Log.i("ZXC", postData.toString() );
-                        //TODO: tu w out masz stringa  jsonem, wyciągnij go jsonobject i dopiero te akcje, ale ic więcej nie potrzebujemy tutaj po prostu sprawdzamy czy jest sieć
-                    out = new ConnectionModule()
-                            .execute(ip_url_addr, postData.toString())
-                            .get();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
+//                JSONObject postData = new JSONObject();
+//                try {
+//                    postData.put("Id", androidId);
+//                        Log.i("ZXC", postData.toString() );
+//                        //TODO: tu w out masz stringa  jsonem, wyciągnij go jsonobject i dopiero te akcje, ale ic więcej nie potrzebujemy tutaj po prostu sprawdzamy czy jest sieć
+//                    out = new ConnectionModule()
+//                            .execute(ip_url_addr, postData.toString())
+//                            .get();
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                } catch (ExecutionException e) {
+//                    e.printStackTrace();
+//                }
 
                 Intent intent = new Intent(this, ListaKart.class);
                 startActivity(intent);

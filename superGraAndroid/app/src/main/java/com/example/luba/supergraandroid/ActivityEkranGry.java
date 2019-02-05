@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,6 +15,9 @@ public class ActivityEkranGry extends AppCompatActivity {
 
     private Handler handler;
     private Character character;
+    private TextView tvNazwa;
+    private TextView tvOpis;
+    private TextView tvKlasa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +25,11 @@ public class ActivityEkranGry extends AppCompatActivity {
         setContentView(R.layout.activity_ekran_gry);
 
         character = (Character)getIntent().getSerializableExtra("ChosenCharacter");
+        tvNazwa = (TextView)findViewById(R.id.gra_pokemon_imie);
+        tvOpis = (TextView)findViewById(R.id.gra_pokemon_opis);
+
+        tvNazwa.setText(character.getName());
+        tvOpis.setText(character.getDescription());
        // handler = new Handler();
 
        // handler.post(runnable);
