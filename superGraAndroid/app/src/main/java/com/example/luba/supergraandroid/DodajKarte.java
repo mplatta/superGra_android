@@ -33,6 +33,7 @@ public class DodajKarte extends AppCompatActivity {
     private SQLiteDatabase mDatabase;
     private EditText editNazwa;
     private EditText editOpis;
+    private EditText editClass;
     private Integer numberOfLines = 1;
 
     private LinearLayout skill;
@@ -48,6 +49,7 @@ public class DodajKarte extends AppCompatActivity {
 
         editNazwa = (EditText) findViewById(R.id.add_nazwa);
         editOpis = (EditText) findViewById(R.id.add_opis);
+        editClass = (EditText) findViewById(R.id.add_zycie);
 
         skill = (LinearLayout) findViewById(R.id.add_linear_layout);
 
@@ -129,7 +131,7 @@ public class DodajKarte extends AppCompatActivity {
         character.setAndId(Config.getAndroidId());
         character.setCharacterId(0); // nie zmieniaj, to jest potrzebne tylko dla serwera narazie
         character.setName(editNazwa.getText().toString());
-        character.setType("klasa postaci"); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
+        character.setType(editClass.getText().toString());
         character.setDescription(editOpis.getText().toString());
 
         for (int i = 0; i < skill.getChildCount(); i++) {
