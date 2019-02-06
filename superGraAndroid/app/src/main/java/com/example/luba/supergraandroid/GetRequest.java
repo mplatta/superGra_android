@@ -1,32 +1,27 @@
 package com.example.luba.supergraandroid;
 
 import android.os.AsyncTask;
-import java.io.DataOutputStream;
+
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class ConnectionModule extends AsyncTask<String, Void, String> {
+public class GetRequest extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-
         String data = "";
 
         HttpURLConnection httpURLConnection = null;
         try {
-
             httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
-            httpURLConnection.setRequestMethod("POST");
-            httpURLConnection.setRequestProperty("Content-type", "application/json; charset=utf-8");
+            httpURLConnection.setRequestMethod("GET");
 
             httpURLConnection.setDoOutput(true);
-
-            DataOutputStream wr = new DataOutputStream(httpURLConnection.getOutputStream());
-            wr.writeBytes(params[1].toString());
-            wr.flush();
-            wr.close();
+            httpURLConnection.setConnectTimeout(5000);
+            httpURLConnection.setReadTimeout(5000);
+            httpURLConnection.connect();
 
             InputStream in = httpURLConnection.getInputStream();
             InputStreamReader inputStreamReader = new InputStreamReader(in);
@@ -39,6 +34,7 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            data = null;
         } finally {
             if (httpURLConnection != null) {
                 httpURLConnection.disconnect();
@@ -48,10 +44,7 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
         return data;
     }
 
-    @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
     }
-
-
 }
