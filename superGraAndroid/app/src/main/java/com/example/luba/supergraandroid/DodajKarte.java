@@ -146,42 +146,54 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         String out = null;
-        boolean ok = true;
-//        boolean ok = false;
-//
-//        try {
-//            out = new ConnectionModule()
-//                .execute(Config.getApiCreateCharacter(), character.getJSON())
-//                .get();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
-//
-//        JSONObject resultJSON = null;
-//        try {
-//            resultJSON = new JSONObject(out);
-//            Boolean status = resultJSON.getBoolean("Status");
-//
-//            if (status) {
-//                Integer char_id = resultJSON.getInt("Id");
-//
-//                if (char_id != null) {
-//                    character.setCharacterId(char_id);
-//
-//                    ok = true;
-//                }
-//            }
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+//        boolean ok = true;
+        boolean ok = false;
+
+        try {
+            out = new ConnectionModule()
+                .execute(Config.getApiCreateCharacter(), character.getJSON())
+                .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            backToMain();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            backToMain();
+        }
+
+        JSONObject resultJSON = null;
+        try {
+            resultJSON = new JSONObject(out);
+            Boolean status = resultJSON.getBoolean("Status");
+
+            if (status) {
+                Integer char_id = resultJSON.getInt("Id");
+
+                if (char_id != null) {
+                    character.setCharacterId(char_id);
+
+                    ok = true;
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         if (ok) {
             Intent intent = new Intent(this, ActivityEkranGry.class);
             intent.putExtra("ChosenCharacter", character);
             startActivity(intent);
+        } else {
+            backToMain();
         }
+    }
 
+    private void backToMain() {
+        Toast.makeText(this, "Something go wrong with connection!", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(this, SignInActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }

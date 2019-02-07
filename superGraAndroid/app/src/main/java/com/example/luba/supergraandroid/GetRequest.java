@@ -1,7 +1,9 @@
 package com.example.luba.supergraandroid;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,11 +13,12 @@ public class GetRequest extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... params) {
-        String data = "";
+        StringBuilder data = new StringBuilder();
 
         HttpURLConnection httpURLConnection = null;
         try {
-            httpURLConnection = (HttpURLConnection) new URL(params[0]).openConnection();
+            URL url = new URL(params[0]);
+            httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
 
             httpURLConnection.setDoOutput(true);
@@ -23,15 +26,13 @@ public class GetRequest extends AsyncTask<String, Void, String> {
             httpURLConnection.setReadTimeout(5000);
             httpURLConnection.connect();
 
-            InputStream in = httpURLConnection.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(in);
+            BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
 
-            int inputStreamData = inputStreamReader.read();
-            while (inputStreamData != -1) {
-                char current = (char) inputStreamData;
-                inputStreamData = inputStreamReader.read();
-                data += current;
+            String line;
+            while ((line = br.readLine()) != null) {
+                data.append(line + "\n");
             }
+            br.close();
         } catch (Exception e) {
             e.printStackTrace();
             data = null;
@@ -41,7 +42,7 @@ public class GetRequest extends AsyncTask<String, Void, String> {
             }
         }
 
-        return data;
+        return data == null ? null : data.toString();
     }
 
     protected void onPostExecute(String result) {

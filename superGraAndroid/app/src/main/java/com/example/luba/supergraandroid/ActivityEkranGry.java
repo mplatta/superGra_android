@@ -1,5 +1,6 @@
 package com.example.luba.supergraandroid;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,12 +40,11 @@ public class ActivityEkranGry extends AppCompatActivity {
         tvNazwa.setText(character.getName());
         tvOpis.setText(character.getDescription());
 
-
         showSkils(character.getStats());
 
-       // handler = new Handler();
+        handler = new Handler();
 
-       // handler.post(runnable);
+        handler.post(runnable);
     }
 
     private Runnable runnable = new Runnable() {
@@ -60,22 +61,28 @@ public class ActivityEkranGry extends AppCompatActivity {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                backToMain();
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                backToMain();
             } catch (ExecutionException e) {
                 e.printStackTrace();
+                backToMain();
             }
 
-            if (!out.isEmpty() && out != null) {
+            if (out != null) {
                 try {
                     JSONObject outJSON = new JSONObject(out);
                     reactionForAction(outJSON);
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    backToMain();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    backToMain();
                 } catch (ExecutionException e) {
                     e.printStackTrace();
+                    backToMain();
                 }
             }
 
@@ -141,9 +148,14 @@ public class ActivityEkranGry extends AppCompatActivity {
     private void updateView(Integer id) throws ExecutionException, InterruptedException, JSONException {
         Character ch;
 
-        String out = new GetRequest()
+        Log.d("ASDASD2", Config.getApiGetCharacter() + id.toString());
+
+        String out = null;
+        out = new GetRequest()
                 .execute(Config.getApiGetCharacter() + id.toString())
                 .get();
+
+        Log.d("ASDASD2", out);
 
         JSONObject jsonObject = new JSONObject(out);
 
@@ -167,15 +179,19 @@ public class ActivityEkranGry extends AppCompatActivity {
 
         switch (action) {
             case 3:
-                Integer id = out.getInt("Id");
+                Log.d("ASDASD", out.toString());
+                Integer id = out.getInt("CharacterId");
                 updateView(id);
                 break;
-            case 4:
-                ;
-                break;
-            case 5:
-                ;
-                break;
         }
+    }
+
+    private void backToMain() {
+        Toast.makeText(this, "Something go wrong with connection!", Toast.LENGTH_LONG).show();
+
+        Intent i = new Intent(this, SignInActivity.class);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(i);
     }
 }
