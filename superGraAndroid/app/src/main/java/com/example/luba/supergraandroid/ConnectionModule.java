@@ -12,7 +12,7 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
 
-        String data = "";
+        StringBuilder data = new StringBuilder();
 
         HttpURLConnection httpURLConnection = null;
         try {
@@ -35,7 +35,7 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
             while (inputStreamData != -1) {
                 char current = (char) inputStreamData;
                 inputStreamData = inputStreamReader.read();
-                data += current;
+                data.append(current);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,13 +45,11 @@ public class ConnectionModule extends AsyncTask<String, Void, String> {
             }
         }
 
-        return data;
+        return data.toString();
     }
 
     @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
     }
-
-
 }
