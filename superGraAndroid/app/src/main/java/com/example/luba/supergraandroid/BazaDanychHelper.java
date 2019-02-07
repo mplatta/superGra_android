@@ -27,7 +27,7 @@ public class BazaDanychHelper extends SQLiteOpenHelper {
 
         final String CHARACTERS_TABLE = "CREATE TABLE " + BazaDanych.BazaDanychPokemon.CH_TABLE_NAME
                 + " (" +BazaDanych.BazaDanychPokemon.CH_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + " TEXT NOT NULL, "
+                + BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + " TEXT NOT NULL UNIQUE, "
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_DESCRIPTION + " TEXT NOT NULL, "
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_CLASS + " TEXT NOT NULL, "
                 + BazaDanych.BazaDanychPokemon.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";

@@ -85,11 +85,52 @@ public class DodajKarte extends AppCompatActivity {
 
     }
 
-    private void addToDatabase(){
+    private void addToDatabase(Character ch){
         ContentValues cv = new ContentValues();
         cv.put(BazaDanych.BazaDanychPokemon.COLUMN_NAZWA, editNazwa.getText().toString());
         cv.put(BazaDanych.BazaDanychPokemon.COLUMN_OPIS, editOpis.getText().toString());
         mDatabase.insert(BazaDanych.BazaDanychPokemon.TABLE_NAME, null, cv);
+
+        ContentValues characterValues = new ContentValues();
+//        characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_ID, ch.getCharacterId());
+        characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME, ch.getName());
+        characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_DESCRIPTION, ch.getDescription());
+        characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_CLASS, ch.getType());
+        mDatabase.insert(BazaDanych.BazaDanychPokemon.CH_TABLE_NAME, null, characterValues);
+
+        Cursor cursor = null;
+        Integer ch_id = null;
+
+        cursor = mDatabase.query(
+                BazaDanych.BazaDanychPokemon.CH_TABLE_NAME,
+                new String[] { BazaDanych.BazaDanychPokemon.CH_COLUMN_ID },
+                BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + "=" + ch.getName(),
+                null,
+                null,
+                null,
+                null
+            );
+
+        cursor.moveToFirst();
+        ch_id = cursor.getInt(0);
+
+        for (Stat s : ch.getStats()) {
+            ContentValues skillsValues = new ContentValues();
+            skillsValues.put(BazaDanych.BazaDanychPokemon.SKILL_COLUMN_CH_ID, ch_id);
+            skillsValues.put(BazaDanych.BazaDanychPokemon.SKILL_COLUMN_NAME, s.getName());
+            skillsValues.put(BazaDanych.BazaDanychPokemon.SKILL_COLUMN_VALUE, s.getValue());
+            mDatabase.insert(BazaDanych.BazaDanychPokemon.SKILL_TABLE_NAME, null, skillsValues);
+        }
+
+        for (String s : ch.getEquipment()) {
+            ContentValues eqValues = new ContentValues();
+            eqValues.put(BazaDanych.BazaDanychPokemon.EQ_COLUMN_CH_ID, ch_id);
+            eqValues.put(BazaDanych.BazaDanychPokemon.EQ_COLUMN_NAME, s);
+            mDatabase.insert(BazaDanych.BazaDanychPokemon.EQ_TABLE_NAME, null, eqValues);
+        }
+
+//        skillsValues.put(BazaDanych)
+
     }
 
     public void addSkill(View view) {
@@ -180,6 +221,8 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         if (ok) {
+            //addToDatabase(character);
+
             Intent intent = new Intent(this, ActivityEkranGry.class);
             intent.putExtra("ChosenCharacter", character);
             startActivity(intent);
