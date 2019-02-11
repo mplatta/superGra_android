@@ -101,46 +101,43 @@ public class SignInActivity extends AppCompatActivity {
             String out = null;
             if (networkInfo != null && networkInfo.isConnected()){
 
-//                JSONObject postData = new JSONObject();
-//                try {
-//                    postData.put("Id", androidId);
-//
-//                    out = new ConnectionModule()
-//                            .execute(Config.getApiGetQueue(), postData.toString())
-//                            .get();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    connectionError();
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                    connectionError();
-//                } catch (ExecutionException e) {
-//                    e.printStackTrace();
-//                    connectionError();
-//                }
-//
-//                JSONObject resultJSON = null;
-//
-//                try {
-//                    resultJSON = new JSONObject(out);
-//                    int status = resultJSON.getInt("Action");
-//
-//                    if (status == 0) {
-//                        Intent intent = new Intent(this, ListaKart.class);
-//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                        startActivity(intent);
-//                    } else {
-//                        connectionError();
-//                    }
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    connectionError();
-//                }
-//            }
-                Intent intent = new Intent(this, ListaKart.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
+                JSONObject postData = new JSONObject();
+                try {
+                    postData.put("Id", androidId);
+
+                    out = new ConnectionModule()
+                            .execute(Config.getApiGetQueue(), postData.toString())
+                            .get();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    connectionError();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    connectionError();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                    connectionError();
+                }
+
+                JSONObject resultJSON = null;
+
+                try {
+                    resultJSON = new JSONObject(out);
+                    int status = resultJSON.getInt("Action");
+
+                    if (status == 0) {
+                        Intent intent = new Intent(this, ListaKart.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    } else {
+                        connectionError();
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    connectionError();
+                }
+            }
 
         }
         else {
@@ -148,9 +145,9 @@ public class SignInActivity extends AppCompatActivity {
         }
     }
 
-//    private void connectionError() {
-//        Toast.makeText(this, "Something go wrong with connection!", Toast.LENGTH_LONG).show();
-//    }
+    private void connectionError() {
+        Toast.makeText(this, "Something go wrong with connection!", Toast.LENGTH_LONG).show();
+    }
 }
-}
+
 
