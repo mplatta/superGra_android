@@ -55,9 +55,9 @@ public class ActivityEkranGry extends AppCompatActivity {
 
         showSkills();
 
-//        handler = new Handler();
-//
-//        handler.post(runnable);
+        handler = new Handler();
+
+        handler.post(runnable);
     }
 
     public void showSkills () {

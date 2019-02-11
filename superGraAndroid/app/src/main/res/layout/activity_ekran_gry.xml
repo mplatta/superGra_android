@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/gra_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorPrimaryDark"
-    android:layout_gravity="center">
-
-    <LinearLayout
-        android:id="@+id/gra_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
         <ImageView
             android:id="@+id/gra_pokemon_fota"
             android:layout_height="150dp"
             android:layout_width="150dp"
+            android:layout_marginTop="50dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
             android:src="@drawable/nicolas" />
@@ -98,5 +91,3 @@
         </LinearLayout>
 
     </LinearLayout>
-
-</RelativeLayout>
