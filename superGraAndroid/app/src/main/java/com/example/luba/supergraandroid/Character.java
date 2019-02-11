@@ -13,6 +13,7 @@ public class Character implements Serializable {
     private String type;
     private ArrayList<Stat> stats;
     private ArrayList<String> equipment;
+    private int foto = 0;
 
     public String getAndId() {
         return id;
@@ -60,6 +61,10 @@ public class Character implements Serializable {
 
     public void setStats(ArrayList<Stat> stats) {
         this.stats = stats;
+    }
+
+    public void addStats(Stat stat) {
+        this.stats.add(stat);
     }
 
     public ArrayList<String> getEquipment() {
@@ -110,4 +115,11 @@ public class Character implements Serializable {
         this.equipment = new ArrayList<String>();
     }
 
+    public int getFoto() {
+        return foto;
+    }
+
+    public void setFoto(int foto) {
+        this.foto = foto;
+    }
 }

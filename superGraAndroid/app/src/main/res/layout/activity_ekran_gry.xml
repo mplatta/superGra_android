@@ -17,11 +17,11 @@
 
         <ImageView
             android:id="@+id/gra_pokemon_fota"
-            android:layout_width="150dp"
             android:layout_height="150dp"
+            android:layout_width="150dp"
             android:layout_centerHorizontal="true"
             android:padding="10dp"
-            android:src="@drawable/magikarp" />
+            android:src="@drawable/nicolas" />
 
         <TextView
             android:id="@+id/gra_pokemon_imie"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="Nazwa Pokemona"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/colorWhite" />
 
         <TextView
@@ -54,114 +54,46 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorPrimary"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:drawableRight="@drawable/wand"
+                    android:layout_width="150dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/colorAccent" />
+
+                <TextView
+                    android:id="@+id/gra_klasa"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:text="Klasa"
+                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/colorWhite" />
+            </LinearLayout>
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            <LinearLayout
                 android:id="@+id/ll_skills"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"></LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:orientation="horizontal">
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:orientation="vertical"/>
 
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/ic_sila"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/pokemon_sila"
-                    android:layout_width="150dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="10"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/ic_szybkosc"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/gra_pokemon_szybkosc"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:layout_marginLeft="10dp"
-                    android:text="7"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:layout_marginRight="10dp"
-                    android:drawableRight="@drawable/ic_zywiol"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/pokemon_zywiol"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="woda"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:drawableRight="@drawable/ic_serce"
-                    android:layout_width="150dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:textColor="#fff" />
-
-                <TextView
-                    android:id="@+id/pokemon_zycie"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="left"
-                    android:text="1"
-                    android:layout_marginLeft="10dp"
-                    android:textColor="@color/colorWhite" />
-
-            </LinearLayout>
+            </ScrollView>
 
         </LinearLayout>
 

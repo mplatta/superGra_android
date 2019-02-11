@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:layout_marginRight="10dp"
+                    android:text="Sila"
                     android:drawableRight="@drawable/ic_sila"
                     android:textColor="#fff" />
 
@@ -79,9 +80,10 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:gravity="left"
+                    android:gravity="right"
                     android:layout_marginRight="10dp"
                     android:drawableRight="@drawable/ic_szybkosc"
+                    android:text="Szybkość"
                     android:textColor="#fff" />
 
                 <TextView
@@ -105,9 +107,10 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="right"
                     android:layout_marginRight="10dp"
                     android:drawableRight="@drawable/ic_zywiol"
+                    android:text="Klasa"
                     android:textColor="#fff" />
 
                 <TextView
@@ -130,6 +133,7 @@
 
                 <TextView
                     android:drawableRight="@drawable/ic_serce"
+                    android:text="Życie"
                     android:layout_width="150dp"
                     android:layout_marginRight="10dp"
                     android:layout_height="wrap_content"

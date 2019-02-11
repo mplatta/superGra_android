@@ -66,8 +66,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         character.setAndId(Config.getAndroidId());
                         character.setCharacterId(0); // nie zmieniaj, to jest potrzebne tylko dla serwera narazie
                         character.setName(mData.get(viewHolder.getAdapterPosition()).getNazwa());
-                        character.setType("klasa postaci"); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
+                        character.setType(mData.get(viewHolder.getAdapterPosition()).getKlasa()); // poza nazwą i opisem trzeba jeszcze dać możlwiość wpisania klasy postaci (tutaj nazwane jako typ bo słówko class jest niedostępne)
                         character.setDescription(mData.get(viewHolder.getAdapterPosition()).getOpis());
+                        character.setFoto(mData.get(viewHolder.getAdapterPosition()).getFoto());
+                        character.addStats(new Stat("Siła", mData.get(viewHolder.getAdapterPosition()).getSiła()));
+                        character.addStats(new Stat("Szybkość", mData.get(viewHolder.getAdapterPosition()).getSzybkość()));
+                        character.addStats(new Stat("Zycie", mData.get(viewHolder.getAdapterPosition()).getZycie()));
                         Intent ekranGry = new Intent(mContext, ActivityEkranGry.class);
                         ekranGry.putExtra("ChosenCharacter", character);
                         mContext.startActivity(ekranGry);

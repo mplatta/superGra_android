@@ -8,6 +8,11 @@ public class Pokemon {
     private String Opis;
     private int Foto;
 
+    private Integer Siła;
+    private Integer Szybkość;
+    private String Klasa;
+    private Integer Zycie;
+
     public Pokemon() {
     }
 
@@ -15,6 +20,16 @@ public class Pokemon {
         Nazwa = nazwa;
         Opis = opis;
         Foto = foto;
+    }
+
+    public Pokemon(String nazwa, String opis, int foto, int sila, int szybkosc, String klasa, int zycie) {
+        Nazwa = nazwa;
+        Opis = opis;
+        Foto = foto;
+        Siła = sila;
+        Szybkość = szybkosc;
+        Klasa = klasa;
+        Zycie = zycie;
     }
 
 
@@ -42,4 +57,35 @@ public class Pokemon {
         Foto = foto;
     }
 
+    public Integer getSiła() {
+        return Siła;
+    }
+
+    public void setSiła(Integer siła) {
+        Siła = siła;
+    }
+
+    public Integer getSzybkość() {
+        return Szybkość;
+    }
+
+    public void setSzybkość(Integer szybkość) {
+        Szybkość = szybkość;
+    }
+
+    public String getKlasa() {
+        return Klasa;
+    }
+
+    public void setKlasa(String klasa) {
+        Klasa = klasa;
+    }
+
+    public Integer getZycie() {
+        return Zycie;
+    }
+
+    public void setZycie(Integer zycie) {
+        Zycie = zycie;
+    }
 }
