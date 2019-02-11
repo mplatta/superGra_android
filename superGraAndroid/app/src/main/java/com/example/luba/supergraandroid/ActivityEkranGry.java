@@ -1,12 +1,15 @@
 package com.example.luba.supergraandroid;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +28,7 @@ public class ActivityEkranGry extends AppCompatActivity {
     private TextView tvNazwa;
     private TextView tvOpis;
     private TextView tvKlasa;
+    private ImageView ivFota;
     private LinearLayout llSkills;
 
     @Override
@@ -33,18 +37,63 @@ public class ActivityEkranGry extends AppCompatActivity {
         setContentView(R.layout.activity_ekran_gry);
 
         character = (Character)getIntent().getSerializableExtra("ChosenCharacter");
+
+        ivFota = (ImageView)findViewById(R.id.gra_pokemon_fota);
+
         tvNazwa = (TextView)findViewById(R.id.gra_pokemon_imie);
         tvOpis = (TextView)findViewById(R.id.gra_pokemon_opis);
+        tvKlasa = (TextView)findViewById(R.id.gra_klasa);
         llSkills = (LinearLayout)findViewById(R.id.ll_skills);
 
         tvNazwa.setText(character.getName());
         tvOpis.setText(character.getDescription());
+        tvKlasa.setText(character.getType());
 
-        showSkils(character.getStats());
+        if (character.getFoto()!=0){
+            ivFota.setImageResource(character.getFoto());
+        }
 
-        handler = new Handler();
+        showSkills();
 
-        handler.post(runnable);
+//        handler = new Handler();
+//
+//        handler.post(runnable);
+    }
+
+    public void showSkills () {
+
+        ArrayList<Stat> stats = character.getStats();
+
+        for(int i=0; i<stats.size(); i++){
+
+            LinearLayout ll = new LinearLayout(this);
+            ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,1));
+
+            ll.setOrientation(LinearLayout.HORIZONTAL);
+            TextView etPar = new TextView(this);
+            LinearLayout.LayoutParams layoutP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+            layoutP.setMargins(10,10,10,10);
+            etPar.setLayoutParams(layoutP);
+            etPar.setText(stats.get(i).getName().toString());
+            etPar.setTextColor(Color.WHITE);
+            etPar.setTextSize(20);
+            ll.addView(etPar);
+
+            TextView et = new TextView(this);
+            LinearLayout.LayoutParams layoutV = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+            layoutV.setMargins(10,10,10,10);
+            et.setLayoutParams(layoutV);
+            et.setText(stats.get(i).getValue().toString());
+            et.setTextColor(Color.parseColor("#d81b60"));
+            et.setTextSize(20);
+            ll.addView(et);
+
+            llSkills.addView(ll);
+
+        }
     }
 
     private Runnable runnable = new Runnable() {
