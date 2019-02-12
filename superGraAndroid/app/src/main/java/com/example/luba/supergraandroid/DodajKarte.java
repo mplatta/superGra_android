@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Debug;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -86,13 +87,8 @@ public class DodajKarte extends AppCompatActivity {
     }
 
     private void addToDatabase(Character ch){
-        ContentValues cv = new ContentValues();
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_NAZWA, editNazwa.getText().toString());
-        cv.put(BazaDanych.BazaDanychPokemon.COLUMN_OPIS, editOpis.getText().toString());
-        mDatabase.insert(BazaDanych.BazaDanychPokemon.TABLE_NAME, null, cv);
 
         ContentValues characterValues = new ContentValues();
-//        characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_ID, ch.getCharacterId());
         characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME, ch.getName());
         characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_DESCRIPTION, ch.getDescription());
         characterValues.put(BazaDanych.BazaDanychPokemon.CH_COLUMN_CLASS, ch.getType());
@@ -101,15 +97,7 @@ public class DodajKarte extends AppCompatActivity {
         Cursor cursor = null;
         Integer ch_id = null;
 
-        cursor = mDatabase.query(
-                BazaDanych.BazaDanychPokemon.CH_TABLE_NAME,
-                new String[] { BazaDanych.BazaDanychPokemon.CH_COLUMN_ID },
-                BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + "=" + ch.getName(),
-                null,
-                null,
-                null,
-                null
-            );
+        cursor = mDatabase.rawQuery("SELECT * FROM Characters WHERE Name='" + ch.getName() + "'", null);
 
         cursor.moveToFirst();
         ch_id = cursor.getInt(0);
@@ -128,9 +116,6 @@ public class DodajKarte extends AppCompatActivity {
             eqValues.put(BazaDanych.BazaDanychPokemon.EQ_COLUMN_NAME, s);
             mDatabase.insert(BazaDanych.BazaDanychPokemon.EQ_TABLE_NAME, null, eqValues);
         }
-
-//        skillsValues.put(BazaDanych)
-
     }
 
     public void addSkill(View view) {
@@ -187,7 +172,7 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         String out = null;
-//        boolean ok = true;
+
         boolean ok = false;
 
         try {
@@ -221,8 +206,9 @@ public class DodajKarte extends AppCompatActivity {
         }
 
         if (ok) {
-            //addToDatabase(character);
+            addToDatabase(character);
 
+            this.finish();
             Intent intent = new Intent(this, ActivityEkranGry.class);
             intent.putExtra("ChosenCharacter", character);
             startActivity(intent);
@@ -238,5 +224,11 @@ public class DodajKarte extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(i);
+    }
+
+    private Cursor getAllItems() {
+        return mDatabase.rawQuery("SELECT " + BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + ", " +
+                BazaDanych.BazaDanychPokemon.CH_COLUMN_DESCRIPTION + " FROM " +
+                BazaDanych.BazaDanychPokemon.CH_TABLE_NAME, null);
     }
 }

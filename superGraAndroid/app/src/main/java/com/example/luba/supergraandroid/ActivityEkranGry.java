@@ -1,13 +1,11 @@
 package com.example.luba.supergraandroid;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +28,7 @@ public class ActivityEkranGry extends AppCompatActivity {
     private TextView tvKlasa;
     private ImageView ivFota;
     private LinearLayout llSkills;
+    private LinearLayout llEq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +43,7 @@ public class ActivityEkranGry extends AppCompatActivity {
         tvOpis = (TextView)findViewById(R.id.gra_pokemon_opis);
         tvKlasa = (TextView)findViewById(R.id.gra_klasa);
         llSkills = (LinearLayout)findViewById(R.id.ll_skills);
+        llEq = (LinearLayout)findViewById(R.id.ll_eq);
 
         tvNazwa.setText(character.getName());
         tvOpis.setText(character.getDescription());
@@ -53,47 +53,12 @@ public class ActivityEkranGry extends AppCompatActivity {
             ivFota.setImageResource(character.getFoto());
         }
 
-        showSkills();
+        showSkills(character.getStats());
+        showEq(character.getEquipment());
 
         handler = new Handler();
 
         handler.post(runnable);
-    }
-
-    public void showSkills () {
-
-        ArrayList<Stat> stats = character.getStats();
-
-        for(int i=0; i<stats.size(); i++){
-
-            LinearLayout ll = new LinearLayout(this);
-            ll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,1));
-
-            ll.setOrientation(LinearLayout.HORIZONTAL);
-            TextView etPar = new TextView(this);
-            LinearLayout.LayoutParams layoutP = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 1);
-            layoutP.setMargins(10,10,10,10);
-            etPar.setLayoutParams(layoutP);
-            etPar.setText(stats.get(i).getName().toString());
-            etPar.setTextColor(Color.WHITE);
-            etPar.setTextSize(20);
-            ll.addView(etPar);
-
-            TextView et = new TextView(this);
-            LinearLayout.LayoutParams layoutV = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT, 1);
-            layoutV.setMargins(10,10,10,10);
-            et.setLayoutParams(layoutV);
-            et.setText(stats.get(i).getValue().toString());
-            et.setTextColor(Color.parseColor("#d81b60"));
-            et.setTextSize(20);
-            ll.addView(et);
-
-            llSkills.addView(ll);
-
-        }
     }
 
     private Runnable runnable = new Runnable() {
@@ -139,7 +104,7 @@ public class ActivityEkranGry extends AppCompatActivity {
         }
     };
 
-    private void showSkils(ArrayList<Stat> stats) {
+    private void showSkills(ArrayList<Stat> stats) {
         int numberOfLines = 100;
 
         for(Stat s : stats) {
@@ -169,6 +134,23 @@ public class ActivityEkranGry extends AppCompatActivity {
             numberOfLines++;
 
             llSkills.addView(ll);
+        }
+    }
+
+    private void showEq(ArrayList<String> eq) {
+        int numberOfLines = 100;
+
+        for(String s : eq) {
+            EditText etPar = new EditText(this);
+            etPar.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT, 1));
+            etPar.setSingleLine(true);
+            etPar.setText(s);
+            etPar.setInputType(InputType.TYPE_NULL);
+            etPar.setId(numberOfLines);
+            numberOfLines++;
+
+            llEq.addView(etPar);
         }
     }
 
@@ -214,7 +196,8 @@ public class ActivityEkranGry extends AppCompatActivity {
         // update klasy trzeba dodać
 
         llSkills.removeAllViews();
-        showSkils(ch.getStats());
+        showSkills(ch.getStats());
+        showEq(ch.getEquipment());
 
         character.setDescription(ch.getDescription());
         character.setCharacterId(id);

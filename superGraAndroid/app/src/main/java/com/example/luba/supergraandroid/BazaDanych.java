@@ -14,7 +14,7 @@ class BazaDanych {
         static final String  COLUMN_SZYBKOSC = "Szybkosc";
         static final String  COLUMN_ZYWIOL = "Zywiol";
         static final String  COLUMN_ZYCIE = "Zycie";
-        static final String  COLUMN_TIMESTAMP = "timestamp";
+        static final String  COLUMN_TIMESTAMP = "timestamp_t";
 
         static final String CH_TABLE_NAME = "Characters";
         static final String CH_COLUMN_ID = "Id";

@@ -74,6 +74,15 @@
                     android:textColor="@color/colorWhite" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Stats:"
+                android:layout_marginLeft="8dp"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
             <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
@@ -85,6 +94,31 @@
                 android:background="@color/colorPrimary"
                 android:gravity="center"
                 android:orientation="vertical"/>
+
+
+            </ScrollView>
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Equipment:"
+                android:layout_marginLeft="8dp"
+                android:textColor="@android:color/white"
+                android:textSize="24sp" />
+
+            <ScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:id="@+id/ll_eq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:orientation="vertical"/>
+
 
             </ScrollView>
 

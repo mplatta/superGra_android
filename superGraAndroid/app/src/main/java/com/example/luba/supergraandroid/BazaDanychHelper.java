@@ -3,6 +3,7 @@ package com.example.luba.supergraandroid;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class BazaDanychHelper extends SQLiteOpenHelper {
 
@@ -27,7 +28,7 @@ public class BazaDanychHelper extends SQLiteOpenHelper {
 
         final String CHARACTERS_TABLE = "CREATE TABLE " + BazaDanych.BazaDanychPokemon.CH_TABLE_NAME
                 + " (" +BazaDanych.BazaDanychPokemon.CH_COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + " TEXT NOT NULL UNIQUE, "
+                + BazaDanych.BazaDanychPokemon.CH_COLUMN_NAME + " VARCHAR(30) NOT NULL UNIQUE, "
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_DESCRIPTION + " TEXT NOT NULL, "
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_CLASS + " TEXT NOT NULL, "
                 + BazaDanych.BazaDanychPokemon.COLUMN_TIMESTAMP + " TIMESTAMP DEFAULT CURRENT_TIMESTAMP);";
@@ -39,7 +40,7 @@ public class BazaDanychHelper extends SQLiteOpenHelper {
                 + "FOREIGN KEY(" + BazaDanych.BazaDanychPokemon.SKILL_COLUMN_CH_ID + ") "
                 + "REFERENCES " + BazaDanych.BazaDanychPokemon.CH_TABLE_NAME + "("
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_ID + "), "
-                + "PRIMARY KEY (" + BazaDanych.BazaDanychPokemon.SKILL_COLUMN_CH_ID + ", "
+                + "PRIMARY KEY(" + BazaDanych.BazaDanychPokemon.SKILL_COLUMN_CH_ID + ", "
                 + BazaDanych.BazaDanychPokemon.SKILL_COLUMN_NAME + "));";
 
         final String EQ_TABLE = "CREATE TABLE " + BazaDanych.BazaDanychPokemon.EQ_TABLE_NAME
@@ -49,15 +50,23 @@ public class BazaDanychHelper extends SQLiteOpenHelper {
                 + "REFERENCES " + BazaDanych.BazaDanychPokemon.CH_TABLE_NAME + "("
                 + BazaDanych.BazaDanychPokemon.CH_COLUMN_ID + "));";
 
-        db.execSQL(CREATE_BAZA_DANYCH);
+//        db.execSQL(CREATE_BAZA_DANYCH);
 
         db.execSQL(CHARACTERS_TABLE);
         db.execSQL(SKILLS_TABLE);
         db.execSQL(EQ_TABLE);
+
+        Log.d("ASDASD", "aaaaaa");
+        Log.d("ASDASD", CHARACTERS_TABLE);
+        Log.d("ASDASD", SKILLS_TABLE);
+        Log.d("ASDASD", EQ_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + BazaDanych.BazaDanychPokemon.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + BazaDanych.BazaDanychPokemon.EQ_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + BazaDanych.BazaDanychPokemon.SKILL_TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + BazaDanych.BazaDanychPokemon.CH_TABLE_NAME);
     }
 }

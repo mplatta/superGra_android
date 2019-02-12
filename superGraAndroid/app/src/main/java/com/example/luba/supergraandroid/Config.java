@@ -13,9 +13,6 @@ final class Config {
     static final String API_UPDATE_CHARACTER = ":34450/api/character/Update";
     static final String API_GET_CHARACTER = ":34450/api/character/";
 
-
-    //    public static final String ip_url_addr = "http://192.168.0.73:34450/api/queue/GetQueue";
-
     static void setIp(String _ip) {
         ip = _ip;
     }
